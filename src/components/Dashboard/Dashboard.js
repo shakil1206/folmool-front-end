@@ -15,7 +15,51 @@ import image5 from '../../Images/Image5.JPG';
 import Product from '../Product/Product';
 import ListProduct from '../ListProduct/ListProduct';
 
+import Modal from 'react-modal';
+import { useForm } from 'react-hook-form';
+
+Modal.setAppElement('#root');
+
+
 const Dashboard = () => {
+
+    const { register, handleSubmit, watch, errors } = useForm()
+
+    const onSubmit = (data) => {
+        console.log(data);
+    }
+
+    //React Modal
+
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const handleModalOpen = () => {
+        setModalOpen(true);
+
+    }
+
+    const customStyles = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            padding:"40px",
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            width: '600px',
+        }
+    };
+
+
+    var subtitle;
+    const afterOpenModal = () => {
+        // references are now sync'd and can be accessed.
+        subtitle.style.color = 'black';
+        subtitle.style.textAlign = 'left';
+    }
+
+
 
     //Button Style depend on active
     const [dasboard, setDashboard] = useState(false);
@@ -284,7 +328,7 @@ const Dashboard = () => {
                         {
                             grid ? <div className="col-md-4">
                                 <div className="card plusCard" style={{ width: "15rem", marginTop: "20px", marginBottom: "35px" }}>
-                                    <button><AiOutlinePlusCircle /></button>
+                                    <button onClick={handleModalOpen}><AiOutlinePlusCircle /></button>
                                 </div>
                             </div> : ""
                         }
@@ -319,6 +363,64 @@ const Dashboard = () => {
                     </div> : ""
                 }
 
+            </div>
+
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <Modal
+                            isOpen={modalOpen}
+                            onRequestClose={() => setModalOpen(false)}
+                            style={customStyles}
+                            onAfterOpen={afterOpenModal}
+                        >
+                            <h3 ref={_subtitle => (subtitle = _subtitle)}>Add Product</h3>
+
+                            <div className="d-flex justify-content-between">
+                                <div>
+                                    <label htmlFor="name">
+                                        Name
+                                        <input className="form-control" name="namet" type="text" />
+                                    </label>
+                                    <label htmlFor="thumbnail">
+                                        Upload Thumbnail
+                                        <input className="form-control imageUpload" type="file" accept="image/*" name="thumbnail" />
+                                    </label>
+
+                                </div>
+                                <div >
+                                    <div className="d-flex justify-content-between customSwitch">
+                                        <div>
+                                            <small>Visibility</small>
+                                            <br />
+                                            <label className="switch">
+                                                <input type="checkbox" />
+                                                <span className="slider round"></span>
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <small>Stock</small>
+                                            <br />
+                                            <label className="switch">
+                                                <input type="checkbox" />
+                                                <span className="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <label htmlFor="description">
+                                        Description
+                                       <textarea name="description" id="#" cols="30" rows="3"></textarea>
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="d-flex justify-content-center">
+                                <button className="btn btn-success addButton">Add</button>
+                            </div>
+
+                        </Modal>
+                    </div>
+                </div>
             </div>
 
         </div>
