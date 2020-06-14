@@ -1,0 +1,10 @@
+.topNav{
+    line-height: 150px;
+    background-color: #f8f8f8;
+    padding-left: 50px;
+}
+
+.topNav img{
+    height: 70px;
+    margin-left: 20px;
+}
