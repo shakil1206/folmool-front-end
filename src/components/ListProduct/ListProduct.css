@@ -1,0 +1,10 @@
+.imageList img{
+    height: 70px;
+    width: 80px;
+}
+
+.btnOptionStyle{
+    background-color: transparent;
+    color: black;
+    border: none;
+}

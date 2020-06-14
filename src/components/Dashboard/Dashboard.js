@@ -5,6 +5,7 @@ import { FaShoppingBag } from 'react-icons/fa';
 import { BsEye } from 'react-icons/bs';
 import { MdReorder } from 'react-icons/md';
 import { BsFillGridFill } from 'react-icons/bs';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 import image1 from '../../Images/Image1.JPG';
 import image2 from '../../Images/Image2.JPG';
@@ -12,6 +13,7 @@ import image3 from '../../Images/Image3.JPG';
 import image4 from '../../Images/Image4.JPG';
 import image5 from '../../Images/Image5.JPG';
 import Product from '../Product/Product';
+import ListProduct from '../ListProduct/ListProduct';
 
 const Dashboard = () => {
 
@@ -274,11 +276,49 @@ const Dashboard = () => {
                 </div> : ""
             }
             <div className="container">
-                <div className="row">
-                    {
-                        grid ? allProdcut.map(product => <Product key={product.id} prodcut={product}></Product>) : ""
-                    }
-                </div>
+                {
+                    manageProdcut ? <div className="row">
+                        {
+                            grid ? allProdcut.map(product => <Product key={product.id} prodcut={product}></Product>) : ""
+                        }
+                        {
+                            grid ? <div className="col-md-4">
+                                <div className="card plusCard" style={{ width: "15rem", marginTop: "20px", marginBottom: "35px" }}>
+                                    <button><AiOutlinePlusCircle /></button>
+                                </div>
+                            </div> : ""
+                        }
+                    </div> : ""
+                }
+                {
+                    manageProdcut ? <div className="row">
+                        {
+                            list ? <div className="row bg-white rounded shadow-sm p-3">
+                                <div className="col-md-12">
+                                    <table className="table table-borderless">
+                                        <thead>
+                                            <tr className="text-center">
+                                                <th className="text-secondary text-left" scope="col">Particulars</th>
+                                                <th className="text-secondary" scope="col">Name</th>
+                                                <th className="text-secondary" scope="col">Description</th>
+                                                <th className="text-secondary" scope="col">Availability</th>
+                                                <th className="text-secondary" scope="col">Stock details</th>
+                                                <th className="text-secondary" scope="col">Activity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                allProdcut.map(product => <ListProduct key={product.id} prodcut={product}></ListProduct>)
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> : ""
+                        }
+
+                    </div> : ""
+                }
+
             </div>
 
         </div>

@@ -50,7 +50,7 @@
 }
 
 .container{
-    margin-left:310px;
+    padding-left:310px;
 }
 
 
@@ -78,4 +78,17 @@
     height: 60px;
     width: 200px;
     background-color: #eae7e7;
+}
+
+.plusCard{
+    background-color: #7b37d2;
+    height: 435px;
+}
+
+.plusCard button{
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    font-size: 800%;
 }
